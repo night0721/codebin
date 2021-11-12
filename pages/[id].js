@@ -1,18 +1,26 @@
+import client from "../db/urls";
 import Head from "next/head";
 import styles from "../styles/Home.module.css";
-export default function Home() {
+export default function Page({ data }) {
   return (
     <>
       <Head>
-        <title>Code Bin</title>
-        <meta property="og:title" content="Code Bin" />
+        <title>{data.title ? data.title : "Code Bin"}</title>
+        <meta
+          property="og:title"
+          content={data.title ? data.title : "Code Bin"}
+        />
         <meta
           property="og:image"
           content="https://cdn.discordapp.com/avatars/800966959268364288/a258d7a92f54b25d43db35a19b0c18af.png?size=2048"
         />
         <meta
           property="og:description"
-          content="Store and Access your codes on the cloud"
+          content={
+            data.description
+              ? data.description
+              : "Store and Access your codes on the cloud"
+          }
         />
         <meta name="theme-color" content="#02023a" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -30,11 +38,10 @@ export default function Home() {
             Title
           </label>
           <input
-            //class="form-control"
             className={styles.input}
             type="text"
             placeholder="Code Bin"
-            defaultValue="Code Bin"
+            defaultValue={data.title ? data.title : "Code Bin"}
             id="tit"
             name="title"
             spellCheck="false"
@@ -45,13 +52,16 @@ export default function Home() {
             Description
           </label>
           <input
-            //class="form-control"
             className={styles.input}
             type="text"
             placeholder="Description"
-            defaultValue="Store and Access your codes on the cloud"
+            defaultValue={
+              data.description
+                ? data.description
+                : "Store and Access your codes on the cloud"
+            }
             id="description"
-            name="Store and Access your codes on the cloud"
+            name="description"
             spellCheck="false"
             autoComplete="off"
             required
@@ -64,6 +74,7 @@ export default function Home() {
             type="text"
             id="code"
             name="code"
+            defaultValue={data.code ? data.code : " "}
             spellCheck="false"
             autoComplete="off"
             required
@@ -73,4 +84,24 @@ export default function Home() {
       </form>
     </>
   );
+}
+
+export async function getServerSideProps(context) {
+  const d = await (await client)
+    .db("test")
+    .collection("pastes")
+    .find({ name: context.query.id })
+    .sort({ metacritic: -1 })
+    .limit(1)
+    .toArray();
+  const data = d.map(e => {
+    return {
+      name: e.name,
+      code: e.code,
+      clicks: e.clicks,
+      title: e.title,
+      description: e.description,
+    };
+  })[0];
+  return { props: { data, fallback: false } };
 }
