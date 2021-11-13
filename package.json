@@ -1,5 +1,5 @@
 {
-  "name": "my-app",
+  "name": "code-bin",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
@@ -8,7 +8,7 @@
   },
   "dependencies": {
     "mongodb": "^4.1.4",
-    "next": "^12.0.2",
+    "next": "^12.0.3",
     "react": "^17.0.2",
     "react-dom": "^17.0.2"
   },
