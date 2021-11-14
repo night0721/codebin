@@ -1,46 +1,48 @@
 import Head from "next/head";
-import "../styles/Error.module.css";
 import Link from "next/link";
-// import client from "../db/urls";
-import style from "../styles/Error.module.css";
 export default function App({ code }) {
-  return (
-    <>
-      <Head>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Error</title>
-        <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
-        <link
-          href="https://fonts.googleapis.com/css?family=Encode+Sans+Semi+Condensed:100,200,300,400"
-          rel="stylesheet"
-        ></link>
-      </Head>
-      <div className="loading">
-        <h2 className="h2">
-          A Bin For This Code Already Exists At:{" "}
-          <Link href={code}>
-            <a>{code}</a>
-          </Link>
-        </h2>
-        <div className="gears">
-          <div className="gear one">
-            <div className="bar"></div>
-            <div className="bar"></div>
-            <div className="bar"></div>
-          </div>
-          <div className="gear two">
-            <div className="bar"></div>
-            <div className="bar"></div>
-            <div className="bar"></div>
-          </div>
-          <div className="gear three">
-            <div className="bar"></div>
-            <div className="bar"></div>
-            <div className="bar"></div>
+  if (code) {
+    return (
+      <>
+        <Head>
+          <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1.0"
+          />
+          <title>Error</title>
+          <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+          <link
+            href="https://fonts.googleapis.com/css?family=Encode+Sans+Semi+Condensed:100,200,300,400"
+            rel="stylesheet"
+          ></link>
+          <link rel="icon" href="/icon.png" />
+        </Head>
+        <div className="loading">
+          <h2 className="h2">
+            A Bin For This Code Already Exists At:{" "}
+            <Link href={code}>
+              <a>{code}</a>
+            </Link>
+          </h2>
+          <div className="gears">
+            <div className="gear one">
+              <div className="bar"></div>
+              <div className="bar"></div>
+              <div className="bar"></div>
+            </div>
+            <div className="gear two">
+              <div className="bar"></div>
+              <div className="bar"></div>
+              <div className="bar"></div>
+            </div>
+            <div className="gear three">
+              <div className="bar"></div>
+              <div className="bar"></div>
+              <div className="bar"></div>
+            </div>
           </div>
         </div>
-      </div>
-      <style>{`
+        <style>{`
       :root {
         --main-color: #eaeaea;
         --stroke-color: black;
@@ -228,22 +230,20 @@ export default function App({ code }) {
         -webkit-animation: anticlockwise 3s linear infinite;
       }
     `}</style>
-    </>
-  );
+      </>
+    );
+  } else {
+    return <div>No URL Specified</div>;
+  }
 }
 
 export async function getServerSideProps(context) {
-  // const d = await (await client)
-  //   .db("test")
-  //   .collection("pastes")
-  //   .find({ name: context.query.id })
-  //   .sort({ metacritic: -1 })
-  //   .limit(1)
-  //   .toArray();
-  // const data = d.map(e => {
-  //   return { name: e.name };
-  // })[0];
-  return {
-    props: { code: "http://localhost:3000/3dNg4oIR_", fallback: false },
-  };
+  if (context.query?.code) {
+    return {
+      props: {
+        code: `http://localhost:3000/${context.query.code}`,
+        fallback: false,
+      },
+    };
+  } else return { props: { code: null, fallback: false } };
 }

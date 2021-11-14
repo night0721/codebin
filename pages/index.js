@@ -1,5 +1,4 @@
 import Head from "next/head";
-import styles from "../styles/Home.module.css";
 export default function Home() {
   return (
     <>
@@ -22,16 +21,16 @@ export default function Home() {
           integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We"
           crossOrigin="anonymous"
         />
+        <link rel="icon" href="/icon.png" />
       </Head>
-      <form method="POST" action="/create">
+      <form method="POST" action="/api/create">
         <div className="container">
-          <h1 className={styles.head}>Code Bin</h1>
-          <label htmlFor="tit" className={styles.label}>
+          <h1 className="text-centre">Code Bin</h1>
+          <label htmlFor="tit" className="label">
             Title
           </label>
           <input
-            //class="form-control"
-            className={styles.input}
+            className="input"
             type="text"
             placeholder="Code Bin"
             defaultValue="Code Bin"
@@ -41,36 +40,92 @@ export default function Home() {
             autoComplete="off"
             required
           />
-          <label htmlFor="description" className={styles.label}>
+          <label htmlFor="description" className="label">
             Description
           </label>
           <input
-            //class="form-control"
-            className={styles.input}
+            className="input"
             type="text"
             placeholder="Description"
-            defaultValue="Store and Access your codes on the cloud"
+            defaultValue="Description"
             id="description"
-            name="Store and Access your codes on the cloud"
+            name="description"
             spellCheck="false"
             autoComplete="off"
             required
           />
-          <label htmlFor="code" className={styles.label}>
+        </div>
+        <div className="container3">
+          <label htmlFor="code" className="label">
             Code
           </label>
           <textarea
-            className={styles.textarea}
+            className="textarea"
             type="text"
             id="code"
             name="code"
+            placeholder="Code"
             spellCheck="false"
             autoComplete="off"
             required
           ></textarea>
-          <input type="submit" className={styles.btn} value="Create" />
+          <input type="submit" className="btn" value="Create" />
         </div>
       </form>
+      <style>{`
+      body {
+        background: #100f1c;
+      }
+      .head {
+		    color: white;
+        margin-bottom: 10px;
+        font-size: 34px;
+      }
+      .text-centre, .label {
+        color: white;
+      }
+      .textarea, .textarea:focus {
+	      outline: none;
+	      border: none;
+      }
+      container3{
+        
+      }
+      .input{
+        background-color: #1b1930;
+        color: white;
+        font-family: Consolas;
+        font-size: 23px;
+        border: none;
+        margin-bottom: 28px;
+      }
+      .textarea {
+        height: 97vh;
+        background-color: #1b1930;
+        color: white;
+        font-family: Consolas;
+        font-size: 23px;
+        border: none;
+      }
+      .btn {
+        border: 0;
+        border-radius: 4px;
+        box-sizing: border-box;
+        background-color: rgb(26, 115, 232);
+        color: white;
+        cursor: pointer;
+        float: right;
+        font-size: .875em;
+        width:100%;
+        margin: 0;
+        padding: 8px 16px;
+        transition: box-shadow 150ms cubic-bezier(0.4, 0, 0.2, 1);
+        user-select: none;
+      }
+      .btn:hover{
+        background-color: rgb(25, 103, 210);
+      }
+`}</style>
     </>
   );
 }

@@ -13,5 +13,5 @@ export default async function handler(req, res) {
         .deleteOne({ name: JSON.parse(req.body).name });
       res.status(200).send("Deleted data");
     }
-  } else res.status(405).send("Method not allowed");
+  } else res.status(405).send("Method Not Allowed");
 }
