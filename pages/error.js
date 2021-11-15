@@ -10,7 +10,6 @@ export default function App({ code }) {
             content="width=device-width, initial-scale=1.0"
           />
           <title>Error</title>
-          <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
           <link
             href="https://fonts.googleapis.com/css?family=Encode+Sans+Semi+Condensed:100,200,300,400"
             rel="stylesheet"
