@@ -1,0 +1,34 @@
+{
+  "name": "cath_codebin",
+  "version": "1.0.0",
+  "description": "Store codes online",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/night0721/cath-codebin.git"
+  },
+  "keywords": [
+    "codebin",
+    "bin",
+    "code",
+    "cath"
+  ],
+  "author": "Ń1ght#0001",
+  "license": "Apache 2.0",
+  "bugs": {
+    "url": "https://github.com/night0721/cath-codebin/issues"
+  },
+  "homepage": "https://github.com/night0721/cath-codebin#readme",
+  "dependencies": {
+    "bad-words": "^3.0.4",
+    "ejs": "^3.1.6",
+    "express": "^4.17.1",
+    "express-rate-limit": "^5.3.0",
+    "mongoose": "^6.0.5",
+    "shortid": "^2.2.16",
+    "dotenv": "^10.0.0"
+  }
+}
