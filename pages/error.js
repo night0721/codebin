@@ -237,7 +237,7 @@ export default function App({ code }) {
   }
 }
 
-export async function getServerSideProps(context) {
+export function getServerSideProps(context) {
   if (context.query?.code) {
     return {
       props: {
