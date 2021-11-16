@@ -1,4 +1,4 @@
-import client from "../db/urls";
+import client from "..";
 import Head from "next/head";
 export default function Page({ data }) {
   if (data) {
@@ -147,7 +147,7 @@ export default function Page({ data }) {
 }
 
 export async function getServerSideProps(context) {
-  const coll = (await client).db("test").collection("pastes");
+  const coll = (await client).db("Data").collection("pastes");
   const d = await coll
     .find({ name: context.query.id })
     .sort({ metacritic: -1 })

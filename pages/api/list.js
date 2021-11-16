@@ -1,7 +1,7 @@
-import client from "../../db/urls";
+import client from "../..";
 export default async function handler(req, res) {
   const d = await (await client)
-    .db("test")
+    .db("Data")
     .collection("pastes")
     .find({})
     .sort({ metacritic: -1 })

@@ -240,7 +240,7 @@ export function getServerSideProps(context) {
   if (context.query?.code) {
     return {
       props: {
-        code: `http://localhost:3000/${context.query.code}`,
+        code: `https://code.cath.gq/${context.query.code}`,
         fallback: false,
       },
     };

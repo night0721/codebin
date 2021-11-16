@@ -1,8 +1,8 @@
-import client from "../../db/urls";
+import client from "../..";
 export default async function handler(req, res) {
   if (req.method === "POST") {
     const body = req.body;
-    const coll = (await client).db("test").collection("pastes");
+    const coll = (await client).db("Data").collection("pastes");
     const d = await coll
       .find({ code: body.code })
       .sort({ metacritic: -1 })
